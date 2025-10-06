@@ -34,6 +34,6 @@ Three tier application model:
 - `docker run -d --name <container-name> --network host` runs the container with host network configured.
 - `docker network create -d ipvlan --subnet=192.168.50.0/24 --gateway=192.168.50.1 -o ipvlan_mode=l2 -o parent=<interface-name> <bridge-name>` creates a docker IP VLAN bridge.
 - `docker network create -d macvlan --subnet=192.168.50.0/24 --gateway=192.168.50.1 -o parent=<interface-name> <bridge-name>` creates a MAC VLAN bridge.
-- `sudo ethtool -K <interface-name> tx-checksum-ip-generic off` turns off the problematic interface in case of overlay network
+- `sudo ethtool -K <interface-name> tx-checksum-ip-generic off` turns off the checksum check on specified network interface, resolves problems in case of overlay network
 - `docker swarm init` generates a token to connect with worker node, the output command to be pasted in worker node to join the swarm 
 - `docker network create -d overlay --attachable <bridge-name>
